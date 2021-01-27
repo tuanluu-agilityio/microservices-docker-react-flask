@@ -21,3 +21,8 @@ script:
 
 after_script:
   - docker-compose -f docker-compose-dev.yml down
+
+language:
+  python
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
