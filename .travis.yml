@@ -3,8 +3,14 @@ sudo: required
 services:
   - docker
 
+language:
+  python
 env:
   DOCKER_COMPOSE_VERSION: 1.18.0
+  CODECOV_TOKEN: "6b7b0f23-83ad-4deb-a7f2-cb9b683c4325"
+
+install:
+  - pip install codecov
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
@@ -22,7 +28,5 @@ script:
 after_script:
   - docker-compose -f docker-compose-dev.yml down
 
-language:
-  python
 after_success:
   - bash <(curl -s https://codecov.io/bash)
