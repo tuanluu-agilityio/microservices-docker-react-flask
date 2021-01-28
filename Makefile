@@ -1,9 +1,9 @@
 .PHONY: build
 
-runbuild: killcompose
+up: killcompose
 	@docker-compose -f docker-compose-dev.yml up --build -d
 
-runtest:
+test:
 	@docker-compose -f docker-compose-dev.yml run users python manage.py test
 
 recreate_db:
@@ -15,11 +15,11 @@ seed_db:
 killcompose:
 	@docker-compose -f docker-compose-dev.yml down
 
-runnginx:
+nginx:
 	@docker-compose -f docker-compose-dev.yml up --build nginx
 
-runbuild_prod:
+build:
 	@docker-compose -f docker-compose-prod.yml up -d --build
 
-runcov:
+cov:
 	@docker-compose -f docker-compose-dev.yml run users python manage.py cov
